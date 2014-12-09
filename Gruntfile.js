@@ -56,6 +56,15 @@ module.exports = function(grunt) {
         }
       }
     },
+    compass: {
+      dist: {
+         options: {
+         sassDir: 'assets/sass',
+          cssDir: 'assets/css',
+          fontsDir: 'assets/fonts'
+        }
+      }
+    },
     version: {
       options: {
         file: 'lib/scripts.php',
@@ -66,6 +75,12 @@ module.exports = function(grunt) {
       }
     },
     watch: {
+      css: {
+        files: [
+          'assets/sass/*.scss'
+        ],
+        tasks: ['compass']
+      },
       less: {
         files: [
           'assets/less/*.less',
@@ -102,6 +117,7 @@ module.exports = function(grunt) {
   });
 
   // Load tasks
+  grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
